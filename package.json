@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@openzeppelin/contracts": "^4.7.3",
     "dotenv": "^16.0.2",
     "ethers": "^5.7.1",
     "graphql": "^16.6.0",
