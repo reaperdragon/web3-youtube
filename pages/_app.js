@@ -1,10 +1,13 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { ApolloClient } from "@apollo/client";
 import "../styles/globals.css";
+import client from "../client";
 
 function MyApp({ Component, pageProps }) {
-
-  return <Component {...pageProps} />;
+  return (
+    <ApolloClient client={client}>
+      <Component {...pageProps} />
+    </ApolloClient>
+  );
 }
 
 export default MyApp;
