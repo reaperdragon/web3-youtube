@@ -1,19 +1,17 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
 import React from "react";
+import Head from "next/head";
 import { Header } from "../components";
 
-const Dashboard = () => {
+const Upload = () => {
   return (
     <div>
       <Head>
-        <title>YouTube Dashboard</title>
+        <title>Upload</title>
         <link rel="icon" href="/youtube.png" />
       </Head>
       <Header />
-      
     </div>
   );
 };
 
-export default Dashboard;
+export default Upload;

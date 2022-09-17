@@ -21,7 +21,7 @@ export default function Home() {
       });
       setIsWalletConnected(true);
       localStorage.setItem("walletAddress", accounts[0]);
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
