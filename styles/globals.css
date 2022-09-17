@@ -30,3 +30,13 @@ a {
     background: black;
   }
 }
+
+@layer components {
+  .sidebar {
+    @apply w-full flex flex-col font-body gap-2 my-5 px-5
+  }
+
+  .labels{
+    @apply text-2xl
+  }
+}
