@@ -1,12 +1,12 @@
-import { ApolloClient } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import "../styles/globals.css";
 import client from "../client";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ApolloClient client={client}>
+    <ApolloProvider client={client}>
       <Component {...pageProps} />
-    </ApolloClient>
+    </ApolloProvider>
   );
 }
 

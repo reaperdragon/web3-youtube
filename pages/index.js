@@ -56,7 +56,7 @@ export default function Home() {
           <button
             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
             dark:focus:ring-blue-800 font-medium rounded-full text-sm px-8 py-5 text-center mr-2 mb-2 transition-all ease-in-out delay-150 duration-150
-            hover:translate-y-1 text-1xl"
+            hover:translate-y-1 text-1xl hover:shadow-lg hover:shadow-blue-500/80"
             onClick={connectWallet}
           >
             Connect Wallet
