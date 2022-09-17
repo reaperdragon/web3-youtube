@@ -1,6 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Head from "next/head";
 import { Header } from "../components";
+import { create } from "ipfs-http-client";
+import { ethers } from "ethers";
+import ContractABI from "../artifacts/contracts/YouTube.sol/YouTube.json";
+
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
+
+const auth =
+  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
+
+const client = create({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  apiPath: "/api/v0",
+  headers: {
+    authorization: auth,
+  },
+});
 
 const Upload = () => {
   const [details, setDetails] = useState({
@@ -12,6 +31,109 @@ const Upload = () => {
     video: "",
   });
 
+  const videoThumbRef = useRef();
+  const videoRef = useRef();
+
+  function triggerOnChangeThumb() {
+    videoThumbRef.current.click();
+  }
+
+  function triggerOnChange() {
+    videoRef.current.click();
+  }
+
+  async function handleFileChangeThumb(e) {
+    const uploadedFile = e.target.files[0];
+    if (!uploadedFile) return;
+    setDetails({ ...details, videoThumb: uploadedFile });
+  }
+
+  async function handleFileChange(e) {
+    const uploadedFile = e.target.files[0];
+    if (!uploadedFile) return;
+    setDetails({ ...details, video: uploadedFile });
+  }
+
+  const getContract = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const signer = provider.getSigner();
+
+    let contract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+      ContractABI.abi,
+      signer
+    );
+    return contract;
+  };
+
+  const handleUpload = async () => {
+    const { title, description, category, type, videoThumb, video } = details;
+
+    if (
+      title === "" ||
+      description === "" ||
+      category === "" ||
+      type === "" ||
+      videoThumb === "" ||
+      video === ""
+    ) {
+      alert("Please Provide All the Details");
+      return;
+    }
+    uploadThumbnail(videoThumb);
+  };
+
+  const uploadThumbnail = async (thumb) => {
+    try {
+      const vThumb = await client.add(thumb);
+
+      console.log(vThumb.path);
+
+      uploadVideo(vThumb.path);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const uploadVideo = async (thumbPath) => {
+    try {
+      const video = await client.add(details.video);
+
+      console.log(video.path);
+
+      await upload(video.path, thumbPath);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const upload = async (videoPath, thumbPath) => {
+    let contract = await getContract();
+
+    let uploadDate = String(new Date());
+
+    await contract.videoUpload(
+      thumbPath,
+      videoPath,
+      details.title,
+      details.description,
+      details.category,
+      details.type,
+      uploadDate
+    );
+
+    console.log("Uploaded Successfully");
+    setDetails({
+      title: "",
+      description: "",
+      category: "",
+      type: "",
+      videoThumb: "",
+      video: "",
+    });
+  };
+
   return (
     <div>
       <Head>
@@ -19,7 +141,7 @@ const Upload = () => {
         <link rel="icon" href="/youtube.png" />
       </Head>
       <Header />
-      <div className="grid grid-cols-2 w-full gap-2 ">
+      <div className="grid grid-cols-2 w-full gap-2 md:grid-cols-1">
         <div>
           <div className="sidebar">
             <label className="labels">Title</label>
@@ -86,19 +208,66 @@ const Upload = () => {
           </div>
         </div>
         {/* Sidebar */}
-        <div>
-          <div>
-            <label>Video Thumbnail</label>
-            <div>Select Video Thumbnail For Preview</div>
+        <div className="h-full ">
+          <div className="sidebar h-1/2 md:h-full">
+            <label className="labels">Video Thumbnail</label>
+            <div
+              className={`bg-[#333333] w-full h-full rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer `}
+              onClick={triggerOnChangeThumb}
+            >
+              {details.videoThumb ? (
+                <img
+                  src={window.URL.createObjectURL(details.videoThumb)}
+                  alt="image"
+                  ref={details.videoThumb}
+                  className="w-[180px] h-fit rounded-lg"
+                />
+              ) : (
+                <p>Select Video Thumbnail For Preview</p>
+              )}
+
+              <input
+                id="selectImage"
+                style={{ display: "none" }}
+                type="file"
+                onChange={handleFileChangeThumb}
+                ref={videoThumbRef}
+              />
+            </div>
           </div>
 
-          <div>
-            <label>Video</label>
-            <div>Select Video For Preview</div>
+          <div className="sidebar h-1/2 md:h-full">
+            <label className="labels">Video</label>
+            <div
+              className={`h-full bg-[#333333]  rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer md:mb-8`}
+              onClick={triggerOnChange}
+            >
+              {details.video ? (
+                <video
+                  controls
+                  src={window.URL.createObjectURL(details.video)}
+                  className="w-[180px] h-fit rounded-lg"
+                />
+              ) : (
+                <p>Select Video For Preview</p>
+              )}
+
+              <input
+                id="selectImage"
+                style={{ display: "none" }}
+                type="file"
+                onChange={handleFileChange}
+                ref={videoRef}
+              />
+            </div>
           </div>
         </div>
         {/* RightSidebar */}
       </div>
+
+      <button className="" onClick={handleUpload}>
+        Upload
+      </button>
     </div>
   );
 };
