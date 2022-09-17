@@ -4,6 +4,7 @@ import { Header } from "../components";
 import { create } from "ipfs-http-client";
 import { ethers } from "ethers";
 import ContractABI from "../artifacts/contracts/YouTube.sol/YouTube.json";
+import { GrUploadOption } from "react-icons/gr";
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
@@ -141,132 +142,138 @@ const Upload = () => {
         <link rel="icon" href="/youtube.png" />
       </Head>
       <Header />
-      <div className="grid grid-cols-2 w-full gap-2 md:grid-cols-1">
-        <div>
-          <div className="sidebar">
-            <label className="labels">Title</label>
-            <input
-              value={details.title}
-              placeholder="ex. Holloween Candy"
-              onChange={(e) =>
-                setDetails({ ...details, title: e.target.value })
-              }
-              className="px-5 py-3 rounded-xl
+      <div className="relative">
+        <div className="grid grid-cols-2 w-full gap-2 md:grid-cols-1 max-w-[1440px] my-0 mx-auto">
+          <div>
+            <div className="sidebar">
+              <label className="labels">Title</label>
+              <input
+                value={details.title}
+                placeholder="ex. Holloween Candy"
+                onChange={(e) =>
+                  setDetails({ ...details, title: e.target.value })
+                }
+                className="px-5 py-3 rounded-xl
                placeholder:text-slate-400"
-            />
-          </div>
+              />
+            </div>
 
-          <div className="sidebar">
-            <label className="labels">Description</label>
-            <textarea
-              placeholder="ex. This Story Start With Little Boy Who Always After Cady
+            <div className="sidebar">
+              <label className="labels">Description</label>
+              <textarea
+                placeholder="ex. This Story Start With Little Boy Who Always After Cady
               blah blah blah"
-              value={details.description}
-              onChange={(e) => {
-                setDetails({ ...details, description: e.target.value });
-              }}
-              rows="10"
-              className="px-5 py-3 rounded-xl placeholder:text-slate-400"
-            />
-          </div>
-
-          <div className="sidebar">
-            <label className="labels">Category</label>
-            <select
-              value={details.category}
-              onChange={(e) => {
-                setDetails({ ...details, category: e.target.value });
-              }}
-              name="category"
-              className="px-5 py-3 rounded-xl placeholder:text-slate-400"
-            >
-              <option>Kids</option>
-              <option>Science</option>
-              <option>CS</option>
-              <option>Product Review</option>
-              <option>Education</option>
-              <option>Challenge</option>
-              <option>Q&A</option>
-              <option>Movie</option>
-              <option>Tv Show</option>
-            </select>
-          </div>
-
-          <div className="sidebar">
-            <label className="labels">Type</label>
-            <select
-              name="type"
-              value={details.type}
-              onChange={(e) => {
-                setDetails({ ...details, type: e.target.value });
-              }}
-              className="px-5 py-3 rounded-xl"
-            >
-              <option>Video</option>
-              <option>Short</option>
-            </select>
-          </div>
-        </div>
-        {/* Sidebar */}
-        <div className="h-full ">
-          <div className="sidebar h-1/2 md:h-full">
-            <label className="labels">Video Thumbnail</label>
-            <div
-              className={`bg-[#333333] w-full h-full rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer `}
-              onClick={triggerOnChangeThumb}
-            >
-              {details.videoThumb ? (
-                <img
-                  src={window.URL.createObjectURL(details.videoThumb)}
-                  alt="image"
-                  ref={details.videoThumb}
-                  className="w-[180px] h-fit rounded-lg"
-                />
-              ) : (
-                <p>Select Video Thumbnail For Preview</p>
-              )}
-
-              <input
-                id="selectImage"
-                style={{ display: "none" }}
-                type="file"
-                onChange={handleFileChangeThumb}
-                ref={videoThumbRef}
+                value={details.description}
+                onChange={(e) => {
+                  setDetails({ ...details, description: e.target.value });
+                }}
+                rows="10"
+                className="px-5 py-3 rounded-xl placeholder:text-slate-400"
               />
+            </div>
+
+            <div className="sidebar">
+              <label className="labels">Category</label>
+              <select
+                value={details.category}
+                onChange={(e) => {
+                  setDetails({ ...details, category: e.target.value });
+                }}
+                name="category"
+                className="px-5 py-3 rounded-xl placeholder:text-slate-400"
+              >
+                <option>Kids</option>
+                <option>Science</option>
+                <option>CS</option>
+                <option>Product Review</option>
+                <option>Education</option>
+                <option>Challenge</option>
+                <option>Q&A</option>
+                <option>Movie</option>
+                <option>Tv Show</option>
+              </select>
+            </div>
+
+            <div className="sidebar">
+              <label className="labels">Type</label>
+              <select
+                name="type"
+                value={details.type}
+                onChange={(e) => {
+                  setDetails({ ...details, type: e.target.value });
+                }}
+                className="px-5 py-3 rounded-xl"
+              >
+                <option>Video</option>
+                <option>Short</option>
+              </select>
             </div>
           </div>
 
-          <div className="sidebar h-1/2 md:h-full">
-            <label className="labels">Video</label>
-            <div
-              className={`h-full bg-[#333333]  rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer md:mb-8`}
-              onClick={triggerOnChange}
-            >
-              {details.video ? (
-                <video
-                  controls
-                  src={window.URL.createObjectURL(details.video)}
-                  className="w-[180px] h-fit rounded-lg"
-                />
-              ) : (
-                <p>Select Video For Preview</p>
-              )}
+          <div className="h-full ">
+            <div className="sidebar h-1/2 md:h-full">
+              <label className="labels">Video Thumbnail</label>
+              <div
+                className={`bg-[#333333] w-full h-full rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer `}
+                onClick={triggerOnChangeThumb}
+              >
+                {details.videoThumb ? (
+                  <img
+                    src={window.URL.createObjectURL(details.videoThumb)}
+                    alt="image"
+                    ref={details.videoThumb}
+                    className="w-[180px] h-fit rounded-lg"
+                  />
+                ) : (
+                  <p>Select Video Thumbnail For Preview</p>
+                )}
 
-              <input
-                id="selectImage"
-                style={{ display: "none" }}
-                type="file"
-                onChange={handleFileChange}
-                ref={videoRef}
-              />
+                <input
+                  id="selectImage"
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={handleFileChangeThumb}
+                  ref={videoThumbRef}
+                />
+              </div>
+            </div>
+
+            <div className="sidebar h-1/2 md:h-full">
+              <label className="labels">Video</label>
+              <div
+                className={`h-full bg-[#333333]  rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer md:mb-8`}
+                onClick={triggerOnChange}
+              >
+                {details.video ? (
+                  <video
+                    controls
+                    src={window.URL.createObjectURL(details.video)}
+                    className="w-[180px] h-fit rounded-lg"
+                  />
+                ) : (
+                  <p>Select Video For Preview</p>
+                )}
+
+                <input
+                  id="selectImage"
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={handleFileChange}
+                  ref={videoRef}
+                />
+              </div>
             </div>
           </div>
         </div>
-        {/* RightSidebar */}
       </div>
 
-      <button className="" onClick={handleUpload}>
-        Upload
+      <button
+        className="fixed inset-x-0 bottom-0   h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
+            dark:focus:ring-blue-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
+            hover:translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-[0_35px_60px_-15px_rgba(28, 132, 255, 0.8)]"
+        onClick={handleUpload}
+      >
+        Upload <GrUploadOption />
       </button>
     </div>
   );
