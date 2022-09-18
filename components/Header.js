@@ -26,6 +26,19 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link href="/search">
+                <a
+                  className={
+                    currentRoute === "/search"
+                      ? "text-sky-600 text-base font-medium"
+                      : "text-white font-normal"
+                  }
+                >
+                  Search
+                </a>
+              </Link>
+            </li>
+            <li>
               <Link href="/upload">
                 <a
                   className={
