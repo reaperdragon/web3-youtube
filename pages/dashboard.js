@@ -73,11 +73,13 @@ const Dashboard = () => {
         <link rel="icon" href="/youtube.png" />
       </Head>
       <Header />
-      <div className="grid grid-cols-5 gap-6 h-max md:grid-cols-2 sm:grid-cols-1 px-[28px] sm:px-1 sm:gap-1 md:gap-y-1 max-w-[1440px] my-0 mx-auto">
-        {videos &&
-          videos?.videos?.map((data) => (
-            <VideoCard key={data.id} data={data} />
-          ))}
+      <div className="mt-8">
+        <div className="grid grid-cols-5 gap-6 h-max md:grid-cols-2 sm:grid-cols-1 px-[28px] sm:px-1 sm:gap-1 md:gap-y-1 max-w-[1440px] my-0 mx-auto">
+          {videos &&
+            videos?.videos?.map((data) => (
+              <VideoCard key={data.id} data={data} />
+            ))}
+        </div>
       </div>
     </div>
   );
