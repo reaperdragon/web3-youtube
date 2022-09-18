@@ -61,17 +61,20 @@ const Search = () => {
   }, [searchFilter, getVideos]);
 
   return (
-    <div>
+    <div className="font-body">
       <Head>
         <title>YouTube Search</title>
         <link rel="icon" href="/youtube.png" />
       </Head>
       <Header />
-      <input
-        placeholder="Search Video"
-        value={searchFilter}
-        onChange={(e) => setSearchFilter(e.target.value)}
-      />
+      <div className="flex items-center justify-center mt-8">
+        <input
+          placeholder="Search Video"
+          value={searchFilter}
+          onChange={(e) => setSearchFilter(e.target.value)}
+          className="px-5 py-3 rounded-xl border-slate-200 placeholder-slate-400 contrast-more:border-sky-400 contrast-more:placeholder-sky-500"
+        />
+      </div>
 
       {searchFilter ? (
         <div className="grid grid-cols-5 gap-6 h-max md:grid-cols-2 sm:grid-cols-1 px-[28px] sm:px-1 sm:gap-1 md:gap-y-1 max-w-[1440px] my-0 mx-auto">
@@ -81,7 +84,9 @@ const Search = () => {
             ))}
         </div>
       ) : (
-        <h1>Search Video</h1>
+        <div className="flex h-full items-center justify-center">
+          <h1 className="items-center justify-center my-10">Search Video</h1>
+        </div>
       )}
     </div>
   );
