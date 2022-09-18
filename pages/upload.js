@@ -5,6 +5,7 @@ import { create } from "ipfs-http-client";
 import { ethers } from "ethers";
 import ContractABI from "../artifacts/contracts/YouTube.sol/YouTube.json";
 import { GrUploadOption } from "react-icons/gr";
+import { useRouter } from "next/router";
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
@@ -31,6 +32,8 @@ const Upload = () => {
     videoThumb: "",
     video: "",
   });
+
+  const router = useRouter();
 
   const videoThumbRef = useRef();
   const videoRef = useRef();
@@ -133,6 +136,8 @@ const Upload = () => {
       videoThumb: "",
       video: "",
     });
+
+    router.push("/dashboard");
   };
 
   return (
