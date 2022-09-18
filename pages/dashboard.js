@@ -20,14 +20,10 @@ const FETCH_VIDEOS = gql`
   }
 `;
 
-
-
 const Dashboard = () => {
   const [videos, setVideos] = useState([]);
 
   const clientApollo = useApolloClient();
-
-
 
   // Main Approach ---------------------
 
