@@ -1,4 +1,5 @@
 import { gql, useApolloClient, useLazyQuery } from "@apollo/client";
+import Head from "next/head";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Header, VideoCard } from "../components";
 
@@ -61,6 +62,10 @@ const Search = () => {
 
   return (
     <div>
+      <Head>
+        <title>YouTube Search</title>
+        <link rel="icon" href="/youtube.png" />
+      </Head>
       <Header />
       <input
         placeholder="Search Video"
