@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="rounded-[64px] border-b-[1px]  border-bg-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-0 mx-auto h-16 md:px-4">
+      <div className="rounded-[64px] border-2  border-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5">
         <img src="/youtube.png" alt="logo" className="h-10" />
         <div>
           <ul className="flex gap-2">
@@ -18,7 +18,7 @@ const Header = () => {
                   className={
                     currentRoute === "/dashboard"
                       ? "text-sky-600 text-base font-medium"
-                      : "text-white font-normal"
+                      : "text-gray-500 font-normal"
                   }
                 >
                   Home
@@ -31,7 +31,7 @@ const Header = () => {
                   className={
                     currentRoute === "/search"
                       ? "text-sky-600 text-base font-medium"
-                      : "text-white font-normal"
+                      : "text-gray-500 font-normal"
                   }
                 >
                   Search
@@ -44,7 +44,7 @@ const Header = () => {
                   className={
                     currentRoute === "/upload"
                       ? "text-sky-600 text-base font-medium"
-                      : "text-white font-normal"
+                      : "text-gray-500 font-normal"
                   }
                 >
                   Upload
