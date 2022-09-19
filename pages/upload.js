@@ -227,7 +227,7 @@ const Upload = () => {
                     src={window.URL.createObjectURL(details.videoThumb)}
                     alt="image"
                     ref={details.videoThumb}
-                    className="w-[180px] h-fit rounded-lg"
+                    className="w-[60%] md:w-[80%] h-fit rounded-lg"
                   />
                 ) : (
                   <p>Select Video Thumbnail For Preview</p>
@@ -253,7 +253,7 @@ const Upload = () => {
                   <video
                     controls
                     src={window.URL.createObjectURL(details.video)}
-                    className="w-[180px] h-fit rounded-lg"
+                    className="w-[60%] md:w-[80%] h-fit rounded-lg"
                   />
                 ) : (
                   <p>Select Video For Preview</p>
