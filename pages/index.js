@@ -36,7 +36,7 @@ export default function Home() {
       {isWalletConnected && localStorage.getItem("walletAddress") ? (
         <Dashboard />
       ) : (
-        <div className="flex h-screen items-center justify-center flex-col gap-5 font-body ">
+        <div className="flex h-screen items-center justify-center flex-col gap-5 font-body sm:text-center">
           <img
             src="/youtube_main.png"
             alt="logo"
