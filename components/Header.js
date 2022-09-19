@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -6,9 +6,29 @@ const Header = () => {
   const router = useRouter();
   const currentRoute = router.pathname;
 
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  const changeNavbar = () => {
+    if (window.scrollY >= 20) {
+      setHasScrolled(true);
+    } else {
+      setHasScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("scroll", changeNavbar);
+  });
+
   return (
-    <div className="sticky top-0 z-[99999] w-full px-2 py-4 shadow-xl  sm:px-4">
-      <div className=" rounded-[64px] border-2  border-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5 ">
+    <div className="sticky top-0 z-[99999] w-full px-2 py-2 sm:px-4 transition-all">
+      <div
+        className={
+          hasScrolled
+            ? `rounded-[64px]  px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5 backdrop-blur-sm bg-black/40`
+            : `rounded-[64px] border-2  border-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5`
+        }
+      >
         <img src="/youtube.png" alt="logo" className="h-10" />
         <div>
           <ul className="flex gap-2">
