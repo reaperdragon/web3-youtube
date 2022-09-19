@@ -76,19 +76,28 @@ const Upload = () => {
   const handleUpload = async () => {
     const { title, description, category, type, videoThumb, video } = details;
 
-    if (
-      title === "" ||
-      description === "" ||
-      category === "" ||
-      type === "" ||
-      videoThumb === "" ||
-      video === ""
-    ) {
-      alert("Please Provide All the Details");
+    if (title === "") {
+      alert("Please Provide Video Title");
       return;
+    } else if (description === "") {
+      alert("Please Provide Video Description");
+      return;
+    } else if (category === "") {
+      alert("Please Select Category");
+      return;
+    } else if (type === "") {
+      alert("Please Select Video Type");
+      return;
+    } else if (videoThumb === "") {
+      alert("Please Add Video Thumb");
+      return;
+    } else if (video === "") {
+      alert("Please Add Video");
+      return;
+    } else {
+      setLoading(true);
+      uploadThumbnail(videoThumb);
     }
-    setLoading(true);
-    uploadThumbnail(videoThumb);
   };
 
   const uploadThumbnail = async (thumb) => {
@@ -144,6 +153,17 @@ const Upload = () => {
     setLoading(false);
 
     router.push("/dashboard");
+  };
+
+  const handleClear = () => {
+    setDetails({
+      title: "",
+      description: "",
+      category: "",
+      type: "",
+      videoThumb: "",
+      video: "",
+    });
   };
 
   return (
@@ -202,6 +222,8 @@ const Upload = () => {
                 <option>Q&A</option>
                 <option>Movie</option>
                 <option>Tv Show</option>
+                <option>Food</option>
+                <option>Nature</option>
               </select>
             </div>
 
@@ -277,18 +299,10 @@ const Upload = () => {
           </div>
         </div>
       </div>
-      <div>
-        <button
-          className="md:fixed inset-x-0 bottom-0 font-body  h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r bg-red-700 hover:bg-gradient-to-br border-spacing-1 focus:ring-4 focus:outline-none 
-        border-red focus:ring-red-300 
-            dark:focus:ring-red-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
-            hover:-translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-lg hover:shadow-red-500/80"
-        >
-          Discard
-        </button>
 
+      <div className="flex max-w-[1440px] my-0 mx-auto gap-2 px-5 py-3 ">
         <button
-          className="md:fixed inset-x-0 bottom-20 font-body  h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
+          className="md:fixed inset-x-0 md:bottom-20 font-body  h-16 w-[200px] left-0 right-0 md:mx-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
             dark:focus:ring-blue-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
             hover:-translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-lg hover:shadow-blue-500/80"
           disabled={loading}
@@ -301,6 +315,18 @@ const Upload = () => {
               Upload <GrUploadOption />
             </span>
           )}
+        </button>
+
+        <button
+          className="md:fixed inset-x-0 bottom-0 font-body  h-16 w-[200px] left-0 right-0 md:mx-auto  text-white bg-gradient-to-r bg-red-700 hover:bg-gradient-to-br border-spacing-1 focus:ring-4 focus:outline-none 
+        border-red focus:ring-red-300 
+            dark:focus:ring-red-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
+            hover:-translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-lg hover:shadow-red-500/80"
+          onClick={handleClear}
+          disabled={loading}
+        >
+          {" "}
+          {loading ? "Please Wait" : "Discard"}
         </button>
       </div>
     </div>
