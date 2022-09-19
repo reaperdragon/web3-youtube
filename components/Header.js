@@ -7,8 +7,8 @@ const Header = () => {
   const currentRoute = router.pathname;
 
   return (
-    <div>
-      <div className="rounded-[64px] border-2  border-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5">
+    <div className="sticky top-0 z-[99999] w-full px-2 py-4 shadow-xl  sm:px-4">
+      <div className=" rounded-[64px] border-2  border-[#545454] px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5 ">
         <img src="/youtube.png" alt="logo" className="h-10" />
         <div>
           <ul className="flex gap-2">
