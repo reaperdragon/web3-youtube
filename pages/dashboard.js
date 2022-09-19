@@ -8,14 +8,7 @@ const FETCH_VIDEOS = gql`
     videos(orderBy: $orderBy, orderDirection: $orderDirection) {
       id
       videothumbhash
-      videohash
       title
-      user
-      description
-      date
-      category
-      videotype
-      createdAt
     }
   }
 `;
