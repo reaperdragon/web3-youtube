@@ -9,7 +9,7 @@
 - [x] Search Videos
 - [x] Upload Short
 - [x] Search by Category
-- [] comments - soon 
+- [ ] comments - soon 
 
 ### Stack
 
@@ -85,4 +85,12 @@ NEXT_PUBLIC_CONTRACT_ADDRESS="CONTRACT_ADDRESS"
 
 ### Screenshots
 
-#### Web
+<img width="1600" alt="dashboard" src="https://user-images.githubusercontent.com/67114280/190966376-dcdc4823-6ceb-4dbb-9eea-989e03f491ac.png">
+
+<img width="1600" alt="upload" src="https://user-images.githubusercontent.com/67114280/190965969-4f6f56c0-ee88-4dee-8d2a-444b2ca0a47f.png">
+
+<img width="1600" alt="video" src="https://user-images.githubusercontent.com/67114280/190965985-042c4311-505b-4fb2-8221-77edf86b7e6c.png">
+
+<img width="1600" alt="search" src="https://user-images.githubusercontent.com/67114280/190965957-3f6b3e6b-d95b-469a-a444-53d4e088c7b2.png">
+
+<img width="1600" alt="responsive" src="https://user-images.githubusercontent.com/67114280/190965946-2b0ea380-a379-4dda-a6ad-d4c9d4b410b7.png">
