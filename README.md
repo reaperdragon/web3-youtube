@@ -8,7 +8,7 @@
 - [x] play video
 - [x] Search Videos
 - [x] Upload Short
-- [x] Search by Category
+- [ ] Search by Category - soon
 - [ ] comments - soon 
 
 ### Stack
