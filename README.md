@@ -1,5 +1,7 @@
 # Web 3.0 YouTube App 📹
 
+<img width="1600" alt="credit" src="https://user-images.githubusercontent.com/67114280/190989003-3ee20263-0817-44ba-925a-172c146ad3ba.png">
+
 ### Built with Next Js, Hardhat, Solidity, IPFS, The Graph Protocol and Tailwind CSS.
 
 ### Functionalities
@@ -39,7 +41,7 @@ Now It will be available in GitHub Account.
 - Clone this repo with url
 
 ```shell
-git clone 
+git clone https://github.com/Aakrut/web3-youtube
 ```
 
 ##### Setup
@@ -47,7 +49,7 @@ git clone
 > Install npm dependencies using npm install
 
 ```shell
-$ npm install && cd web3-youtube && npm install
+cd web3-youtube && npm install
 ```
 
 > Set up environment Variables I already Provided .env.example file.
