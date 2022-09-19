@@ -53,6 +53,17 @@ export default function Home() {
             Web 3.0 YouTube made with Next Js, IPFS, The Graph Protocol and with
             Tailwind CSS
           </p>
+          <span className="semibold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">
+            Please Select Polygon Mumbai For Test{" "}
+            <a
+              href="https://wiki.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-sky-800 font-medium"
+            >
+              Link
+            </a>
+          </span>
           <button
             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
             dark:focus:ring-blue-800 font-medium rounded-full text-sm px-8 py-5 text-center mr-2 mb-2 transition-all ease-in-out delay-150 duration-150
