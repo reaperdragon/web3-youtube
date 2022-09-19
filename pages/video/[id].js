@@ -13,8 +13,6 @@ const Video = () => {
 
   const router = useRouter();
 
-  // console.log(router.query.id);
-
   const FETCH_VIDEOS = gql`
     query videos($orderBy: String!, $orderDirection: String!) {
       videos(orderBy: $orderBy, orderDirection: $orderDirection) {
@@ -26,7 +24,6 @@ const Video = () => {
         description
         date
         category
-        videotype
         createdAt
       }
     }
