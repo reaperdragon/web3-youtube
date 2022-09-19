@@ -33,6 +33,8 @@ const Upload = () => {
     video: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const videoThumbRef = useRef();
@@ -85,6 +87,7 @@ const Upload = () => {
       alert("Please Provide All the Details");
       return;
     }
+    setLoading(true);
     uploadThumbnail(videoThumb);
   };
 
@@ -128,6 +131,7 @@ const Upload = () => {
     );
 
     console.log("Uploaded Successfully");
+
     setDetails({
       title: "",
       description: "",
@@ -136,6 +140,8 @@ const Upload = () => {
       videoThumb: "",
       video: "",
     });
+
+    setLoading(false);
 
     router.push("/dashboard");
   };
@@ -148,7 +154,7 @@ const Upload = () => {
       </Head>
       <Header />
       <div className="relative">
-        <div className="grid grid-cols-2 w-full gap-2 md:grid-cols-1 max-w-[1440px] my-0 mx-auto">
+        <div className="grid grid-cols-2 w-full gap-2 md:grid-cols-1 max-w-[1440px] my-0 mx-auto h-full">
           <div>
             <div className="sidebar">
               <label className="labels">Title</label>
@@ -215,8 +221,8 @@ const Upload = () => {
             </div>
           </div>
 
-          <div className="h-full ">
-            <div className="sidebar h-1/2 md:h-full">
+          <div className="h-full">
+            <div className="sidebar h-[45%] md:h-full">
               <label className="labels">Video Thumbnail</label>
               <div
                 className={`bg-[#333333] w-full h-full rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer `}
@@ -243,7 +249,7 @@ const Upload = () => {
               </div>
             </div>
 
-            <div className="sidebar h-1/2 md:h-full">
+            <div className="sidebar h-[45%] md:h-full">
               <label className="labels">Video</label>
               <div
                 className={`h-full bg-[#333333]  rounded-xl flex items-center justify-center text-slate-400 border-dashed border-2 border-white cursor-pointer md:mb-8`}
@@ -271,15 +277,32 @@ const Upload = () => {
           </div>
         </div>
       </div>
+      <div>
+        <button
+          className="md:fixed inset-x-0 bottom-0 font-body  h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r bg-red-700 hover:bg-gradient-to-br border-spacing-1 focus:ring-4 focus:outline-none 
+        border-red focus:ring-red-300 
+            dark:focus:ring-red-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
+            hover:-translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-lg hover:shadow-red-500/80"
+        >
+          Discard
+        </button>
 
-      <button
-        className="fixed inset-x-0 bottom-0   h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
+        <button
+          className="md:fixed inset-x-0 bottom-20 font-body  h-16 w-[200px] left-0 right-0 mx-auto  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
             dark:focus:ring-blue-800 font-medium rounded-full text-sm px-5 py-2  text-center  mb-4 transition-all ease-in-out delay-150 duration-150
             hover:-translate-y-1 text-1xl flex items-center justify-center gap-4 z-50 hover:shadow-lg hover:shadow-blue-500/80"
-        onClick={handleUpload}
-      >
-        Upload <GrUploadOption />
-      </button>
+          disabled={loading}
+          onClick={handleUpload}
+        >
+          {loading ? (
+            "Uploading..."
+          ) : (
+            <span className="flex items-center justify-center gap-2">
+              Upload <GrUploadOption />
+            </span>
+          )}
+        </button>
+      </div>
     </div>
   );
 };
