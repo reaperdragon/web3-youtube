@@ -1,0 +1,23 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: YouTube
+    network: mumbai
+    source:
+      address: "0x18ce1922304462Faa1cA3C82837848F03fdD040d"
+      abi: YouTube
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - VideoUploaded
+      abis:
+        - name: YouTube
+          file: YouTube\abis\YouTube.json
+      eventHandlers:
+        - event: VideoUploaded(uint256,string,string,string,string,string,string,string,address)
+          handler: handleVideoUploaded
+      file: YouTube\YouTube.wasm

@@ -1,0 +1,12 @@
+type Video @entity {
+  id: ID!
+  videothumbhash: String!
+  videohash: String!
+  title: String!
+  description: String!
+  category: String!
+  videotype: String!
+  date: String!
+  user: Bytes!
+  createdAt: BigInt!
+}
