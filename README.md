@@ -87,6 +87,19 @@ NEXT_PUBLIC_CONTRACT_ADDRESS="CONTRACT_ADDRESS"
 
 ## For Setting up Graph Protocol - [The Graph](https://thegraph.com/en/)
 
+now replace the graph url with 
+```
+NEXT_PUBLIC_GRAPHQL_URL="GRAPHQL_URL"
+```
+
+Let's Run this command for dev
+
+```shell
+npm run dev
+--or--
+yarn dev
+```
+
 ### Screenshots
 
 <img width="1600" alt="dashboard" src="https://user-images.githubusercontent.com/67114280/190966376-dcdc4823-6ceb-4dbb-9eea-989e03f491ac.png">
