@@ -11,7 +11,6 @@
 - [x] Search Videos
 - [x] Upload Short
 - [ ] Search by Category - soon
-- [ ] comments - soon 
 
 ### Stack
 
