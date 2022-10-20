@@ -23,6 +23,7 @@
 - Network : [Polygon](https://polygon.technology/)
 - Style : [Tailwind CSS](https://tailwindcss.com/)
 - State management : [GraphQL Apollo Client](https://www.apollographql.com/)
+- Fonts - [Google Fonts](https://fonts.google.com/)
 - Icons : [React Icons](https://react-icons.github.io/react-icons/)
 
 
