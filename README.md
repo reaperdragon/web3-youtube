@@ -10,7 +10,6 @@
 - [x] play video
 - [x] Search Videos
 - [x] Upload Short
-- [ ] Search by Category - soon
 
 ### Stack
 
